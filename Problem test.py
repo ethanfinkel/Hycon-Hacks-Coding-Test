@@ -6,6 +6,8 @@ safey =[]
 treex = []
 treey =[]
 
+#d is down u is up l is left and r is right
+
 def sum_check (x,y):
     if (x<0):
         x = x*-1
@@ -29,14 +31,39 @@ def sum_check (x,y):
     if (sum<=21):
         safex.append(x)
         safey.append(y)
+        return True
 
     else:
         treex.append(x)
         treey.append(y)
+        return False
 
-for x in range (-105,10):
-    for y in range (-105,10):
-        sum_check(x,y)
 
-for z in range (0,10):
+def move (x,y,count):
+    if sum_check(x,y+1) is True:
+        count +=1
+        y +=1
+        move (x,y,count)
+    else:
+        if sum_check(x+1,y) is True:
+            count +=1
+            x+= 1
+            move (x,y,count)
+            print (count)
+        else:
+            if sum_check(x-1,y) is True:
+                count +=1
+                x = x-1
+                move (x,y,count)
+            else:
+                if sum_check(x,y-1) is True:
+                    count +=1
+                    y = y-1
+                    move (x,y,count)
+
+move (0,0,1)
+
+
+
+for z in range (0,len(treex)):
     print (treex[z],treey[z],safex[z],safey[z])

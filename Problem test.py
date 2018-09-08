@@ -2,8 +2,7 @@ x = 0
 y= 0
 sum = x+y
 safeset =set ()
-treex = []
-treey =[]
+treeset = set()
 
 #d is down u is up l is left and r is right
 
@@ -33,8 +32,7 @@ def sum_check (x,y):
         return True
 
     else:
-        treex.append(x)
-        treey.append(y)
+        treeset.add((x,y))
         return False
 
 def check(x,y,safeset):
@@ -46,34 +44,37 @@ def check(x,y,safeset):
 
 def move (x,y,count):
     print (count)
-    if sum_check(x,y+1) is True and check(x,y,safeset) is True:
+    print (x,y)
+    if sum_check(x,y+1) is True and check(x,y+1,safeset) is True:
         count +=1
         y +=1
         print ("f")
+        print (x,y)
         move (x,y,count)
     else:
-        if sum_check(x+1,y) is True and check(x,y,safeset) is True:
+        if sum_check(x+1,y) is True and check(x+1,y,safeset) is True:
             count +=1
             x+= 1
             print ("r")
             move (x,y,count)
         else:
-            if sum_check(x-1,y) is True and check(x,y,safeset) is True:
+            if sum_check(x-1,y) is True and check(x-1,y,safeset) is True:
                 count +=1
                 x = x-1
                 print ("l")
                 move (x,y,count)
             else:
-                if sum_check(x,y-1) is True and check(x,y,safeset) is True:
+                if sum_check(x,y-1) is True and check(x,y-1,safeset) is True:
                     count +=1
                     y = y-1
                     print ("d")
                     move (x,y,count)
 
 
+
 move (0,0,1)
 
 
 
-for z in range (0,len(treex)):
-    print (treex[z],treey[z],safeset[z])
+for z in range (0,len(treeset)):
+    print (treeset[z],safeset[z])

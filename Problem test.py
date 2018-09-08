@@ -45,27 +45,19 @@ def check(x,y,safeset): #this checks if the space has already been checked befor
     else:
         return True
 
-
 def move (x,y,count): #the recursive function to move
+    count+=1
     print (count)
-    print (x,y)
     if check(x, y + 1, safeset) is True and sum_check(x,y+1) is True : #this checks if the space above has already been checked and if there is a tree there
-        count +=1
-        print ("f")
-        move (x,y + 1,count) #if there is no tree and the space has not been checked then the program moves forward and starts recursion
+        count = move (x,y + 1,count) #if there is no tree and the space has not been checked then the program moves forward and starts recursion
     if check(x + 1, y, safeset) is True  and sum_check(x+1,y) is True :# same going right
-        count +=1
-        print ("r")
-        move (x + 1,y,count)
+        count = move (x + 1,y,count)
     if check(x - 1, y, safeset) is True  and sum_check(x-1,y) is True: # same going left
-        count +=1
-        print ("l")
-        move (x - 1,y,count)
+        count = move (x - 1,y,count)
     if check(x, y - 1, safeset) is True and sum_check(x,y-1) is True: #same going down
-        count +=1
-        print ("d")
-        move (x,y - 1,count)
+        count = move (x,y - 1,count)
+    return count
 
+print (move(0,0,0))
 
-
-move (0,0,1) #initializes the function
+ #initializes the function
